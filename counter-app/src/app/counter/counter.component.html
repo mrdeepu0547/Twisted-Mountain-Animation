@@ -1,1 +1,47 @@
-<p>counter works!</p>
+<div class="main-wrapper">
+  <!-- Counter Section -->
+  <div class="counter-section">
+    <h1 class="title">
+      Counter App
+    </h1>
+    <div class="counter-box" [class.animated]="animated">
+      {{ counter }}
+    </div>
+
+    <div class="buttons">
+      <button class="btn plus"(click)="increment()"><i class="material-icons">add</i></button>
+      <button class="btn minus"(click)="decrement()"><i class="material-icons">remove</i></button>
+      <button class="btn reset"(click)="reset()"><i class="material-icons">refresh</i></button>
+    </div>
+  </div>
+
+  <!-- History Table Section -->
+  <div class="history-section">
+    <h2 class="section-title"><i class="material-icons">history</i>History</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let entry of history; let i = index">
+            <td>{{ history.length - i }}</td>
+            <td>{{ entry }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button *ngIf="history.length" (click)="clearHistory()">
+      <span class="material-symbols-outlined">
+        delete_history
+      </span> Clear History
+    </button>
+  </div>
+</div>
+<ngx-spinner [name]="'spinner'" bdColor="rgba(0, 0, 0, 0.8)" size="small" color="#fff" type="ball-spin"
+  [fullScreen]="true">
+  <p style="color: white">Loading... </p>
+</ngx-spinner>
